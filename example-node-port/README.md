@@ -96,3 +96,36 @@ nginx-deployment-6dd686cd46-ffngs   1/1     Running   0          23h
 nginx-deployment-6dd686cd46-pk65g   1/1     Running   0          23h
 nginx-deployment-6dd686cd46-whkbt   1/1     Running   0          17s
 ```
+
+
+`7 - Now we need to check that the additional pod is also being request by the service`
+
+Do add the ip to the HTML at each pod
+```
+ubuntu@k8s-master:~$ kubectl exec -it nginx-deployment-6dd686cd46-whkbt -- bash
+root@nginx-deployment-6dd686cd46-whkbt:/# hostname -I
+10.244.2.4
+root@nginx-deployment-6dd686cd46-whkbt:/# cd /usr/share/nginx/html/
+root@nginx-deployment-6dd686cd46-whkbt:/usr/share/nginx/html# sed -i 's/Welcome to nginx/Welcome to nginx - 10.10.2.4/g' index.html
+```
+
+`8 - Now run the script ouside at any console `
+```
+watch -n 1 "curl -sS -XGET http://10.145.64.76:30163/ | grep \"<h1>Welcome to nginx\" >> res.txt"
+```
+
+`9 - Verify the response by `
+
+```
+$ cat res.txt 
+<h1>Welcome to nginx - **10.10.2.4**!</h1>
+<h1>Welcome to nginx - 10.10.1.2!</h1>
+<h1>Welcome to nginx - 10.10.2.3!</h1>
+<h1>Welcome to nginx - 10.10.2.4!</h1>
+<h1>Welcome to nginx - 10.10.2.4!</h1>
+<h1>Welcome to nginx - 10.10.1.2!</h1>
+<h1>Welcome to nginx - 10.10.1.2!</h1>
+```
+
+We can observe that the response is recieved from four unique IPs
+
