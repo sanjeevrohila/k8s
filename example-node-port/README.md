@@ -144,4 +144,4 @@ nginx-deployment-6dd686cd46   4         4         4       24h
 
 kubectl scale --replicas=6 nginx-deployment-6dd686cd46
 ```
-Also doesn't modifies the file
+Also doesn't modify the deployment file
