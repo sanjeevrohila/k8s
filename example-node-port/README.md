@@ -21,12 +21,20 @@ https://matthewpalmer.net/kubernetes-app-developer/articles/service-kubernetes-e
 https://kubernetes.io/docs/tasks/access-application-cluster/service-access-application-cluster/
 
 `4 - Check the deployment`
-kubectl get deployment
+kubectl get deployment and pods
 
 ```
 ubuntu@k8s-master:~$ kubectl get deployment
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           23h
+```
+
+```
+ubuntu@k8s-master:~$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-6dd686cd46-6wkzh   1/1     Running   0          23h
+nginx-deployment-6dd686cd46-ffngs   1/1     Running   0          23h
+nginx-deployment-6dd686cd46-pk65g   1/1     Running   0          23h
 ```
 
 `5 - describe deployment`
@@ -63,4 +71,28 @@ Conditions:
 OldReplicaSets:  <none>
 NewReplicaSet:   nginx-deployment-6dd686cd46 (3/3 replicas created)
 Events:          <none>
+```
+
+
+`6 - Scale the app by increasing the replicasets`
+Edit the nginx-dep.yaml and change the below - 
+
+```
+replicas: 4
+```
+Now run the below command -
+
+```
+kubectl replace -f nginx-dep.yaml
+```
+
+Check the pods now - An `pod nginx-deployment-6dd686cd46-whkbt` is added
+
+```
+ubuntu@k8s-master:~$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-6dd686cd46-6wkzh   1/1     Running   0          23h
+nginx-deployment-6dd686cd46-ffngs   1/1     Running   0          23h
+nginx-deployment-6dd686cd46-pk65g   1/1     Running   0          23h
+nginx-deployment-6dd686cd46-whkbt   1/1     Running   0          17s
 ```
