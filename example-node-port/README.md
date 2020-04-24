@@ -129,3 +129,19 @@ $ cat res.txt
 
 We can observe that the response is recieved from four unique IPs
 
+`10 - Alternatives to step 6`
+
+```
+kubectl scale --replicas=6 -f nginx-dep.yaml
+
+```
+Doesn't upadate the file
+
+```
+ubuntu@k8s-master:~$ kubectl get replicaset
+NAME                          DESIRED   CURRENT   READY   AGE
+nginx-deployment-6dd686cd46   4         4         4       24h
+
+kubectl scale --replicas=6 nginx-deployment-6dd686cd46
+```
+Also doesn't modifies the file
