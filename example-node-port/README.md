@@ -111,14 +111,14 @@ root@nginx-deployment-6dd686cd46-whkbt:/usr/share/nginx/html# sed -i 's/Welcome 
 
 `8 - Now run the script ouside at any console `
 ```
-watch -n 1 "curl -sS -XGET http://10.145.64.76:30163/ | grep \"<h1>Welcome to nginx\" >> res.txt"
+watch -n 1 "curl -sS -XGET http://10.10.10.2:30163/ | grep \"<h1>Welcome to nginx\" >> res.txt"
 ```
 
 `9 - Verify the response by `
 
 ```
 $ cat res.txt 
-<h1>Welcome to nginx - **10.10.2.4**!</h1>
+<h1>Welcome to nginx - 10.10.2.4!</h1>
 <h1>Welcome to nginx - 10.10.1.2!</h1>
 <h1>Welcome to nginx - 10.10.2.3!</h1>
 <h1>Welcome to nginx - 10.10.2.4!</h1>
