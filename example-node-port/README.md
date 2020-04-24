@@ -111,7 +111,7 @@ root@nginx-deployment-6dd686cd46-whkbt:/usr/share/nginx/html# sed -i 's/Welcome 
 
 `8 - Now run the script ouside at any console `
 ```
-watch -n 1 "curl -sS -XGET http://10.10.10.2:30163/ | grep \"<h1>Welcome to nginx\" >> res.txt"
+watch -n 1 "curl -sS -XGET http://10.20.30.2:30163/ | grep \"<h1>Welcome to nginx\" >> res.txt"
 ```
 
 `9 - Verify the response by `
