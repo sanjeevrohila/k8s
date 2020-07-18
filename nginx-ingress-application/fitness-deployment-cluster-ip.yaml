@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fitnesssvc
+spec:
+  selector:
+    app: fitness-app
+  type: ClusterIP
+  ports:
+    - targetPort: 80
+      port: 8886
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-deployment
+spec:
+  selector:
+    matchLabels:
+      app: fitness-app
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: fitness-app
+    spec:
+      containers:
+        - name: wsgi-flask-fitness
+          image: docker.io/justsanjeev/wsgi-flask-fitness:latest
+          ports:
+            - name: http
+              containerPort: 80
+
