@@ -79,6 +79,6 @@ Commercial support is available at
 Create a Pod run a command and delete the pod
 ```sh
 $ kubectl run mybusybox --image=ubuntu --restart=Never --rm -it -- /bin/sh -c "echo Hello Kubernetes"
-hello K8s
+Hello Kubernetes
 pod "mybusybox" deleted
 ```
