@@ -171,3 +171,21 @@ NAME          READY   STATUS    RESTARTS   AGE   LABELS
 test-label1   1/1     Running   0          41m   application=frontend,tier=production
 test-label2   1/1     Running   0          35m   application=backend,tier=production
 ```
+
+
+Attaching and dettaching labels-
+```sh
+$ kubectl label po nginx1 perf- -n jul29
+pod/nginx1 labeled
+
+$ kubectl get po --show-labels -n jul29
+NAME          READY   STATUS    RESTARTS   AGE     LABELS
+nginx1        1/1     Running   0          2m12s   <none>
+
+$ kubectl label po nginx1 perf=black -n jul29
+pod/nginx1 labeled
+
+$ kubectl get po --show-labels -n jul29
+NAME          READY   STATUS    RESTARTS   AGE     LABELS
+nginx1        1/1     Running   0          2m48s   perf=black
+```
