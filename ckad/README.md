@@ -322,3 +322,7 @@ map[hardware:hyperthreaded]
  - what if we label another host with same label, will this pid restart there ?
  - but the --restart=Never so it will not, if not --restart=Always
  - Need to figure out what will happen
+ 
+ 
+## Check log with fifferent verbosity 
+kubectl logs node-label-pod -n jul29 -v=10/9/8
