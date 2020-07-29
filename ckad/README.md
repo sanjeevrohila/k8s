@@ -37,8 +37,14 @@ spec:
     name: proxy
   restartPolicy: Never
   ```
+  
   ```sh
-  kubectl apply -f multi-container-pod.yaml
+  $ kubectl apply -f ../jul28/pod.yaml
+pod/multic created
   ```
 
+```sh
+$ kubectl set image pod/multic application=nginx:1.19
+pod/multic image updated
+```
 
