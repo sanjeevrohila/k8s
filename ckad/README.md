@@ -175,6 +175,10 @@ test-label2   1/1     Running   0          35m   application=backend,tier=produc
 
 Attaching and dettaching labels-
 ```sh
+$ kubectl get po --show-labels -n jul29
+nginx1        1/1     Running   0          84s     perf=black
+
+
 $ kubectl label po nginx1 perf- -n jul29
 pod/nginx1 labeled
 
