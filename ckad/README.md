@@ -3,6 +3,12 @@ Get all images in all pods:
 $ for ele in `kubectl get po -o jsonpath='{.items[*].spec.containers[*].image}'`; do echo $ele; done
 ```
 
+### Create Multi container pod
+### Exec into pod and runn command
+### Update the container image
+### record and check rollout history
+### rollback
+
 Create multi container pod
 ```sh
 $ vim multi-container-pod.yaml
@@ -26,3 +32,5 @@ spec:
     name: proxy
   restartPolicy: Never
   ```
+
+
