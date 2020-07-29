@@ -295,3 +295,18 @@ $ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeName}{"\n"}'
 host-2
 $ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeSelector}{"\n"}'
 map[hardware:hyperthreaded]
+
+
+#Impact of un-labeling
+$ kubectl label node host-2 hardware-
+node/host-2 labeled
+
+$ kubectl get nodes --show-labels
+NAME         STATUS   ROLES    AGE   VERSION   LABELS
+host-1       Ready    <none>   71d   v1.18.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=host-1,kubernetes.io/os=linux
+host-2       Ready    <none>   71d   v1.18.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=host-2,kubernetes.io/os=linux
+ubuntu1604   Ready    master   71d   v1.18.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=ubuntu1604,kubernetes.io/os=linux,node-role.kubernetes.io/master=
+
+# Label removed from node but the pod still remains on the same node
+$ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeName}{"\n"}'
+host-2
