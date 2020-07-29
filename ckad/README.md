@@ -209,6 +209,7 @@ kubectl taint node <node name> key=value:<taint_effect>
 
 Taint a Node
 ```sh
+#Taint a node
 $ kubectl taint node host-1 application=mebuy:NoSchedule
 
 # Check the taint on node
@@ -234,7 +235,8 @@ spec:
     effect: "NoSchedule"
   dnsPolicy: ClusterFirst
   restartPolicy: Never
-  
+
+#Check the node affinity of pod
 $ kubectl get po taint-pod -n jul29 -o jsonpath='{.spec.nodeName}{"\n"}'
 host-1
 ```
