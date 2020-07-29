@@ -49,7 +49,7 @@ pod/multic image updated
 ```
 
 ```sh
-$ kubectl exec -it multic -c proxy -n jul29 -- /bin/bash -c 'curl localhost'
+$ kubectl exec -it multic -c proxy -- /bin/bash -c 'curl localhost'
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,5 +75,4 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-HYD-ML-00064459:jul29 rohila$
 ```
