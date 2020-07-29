@@ -195,7 +195,7 @@ nginx1        1/1     Running   0          2m48s   perf=black
 ```
 
 
-### Taints and Tolerations
+## Taints and Tolerations
 
 | Taint Effect | Specification | additional Info|
 | ------------ | ------------- | ---------------|
