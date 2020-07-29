@@ -11,8 +11,6 @@ $ for ele in `kubectl get po -o jsonpath='{.items[*].spec.containers[*].image}'`
  - Create Multi container pod
  - Exec into pod and runn command
  - Update the container image
- - Record and check rollout history
- - Rollback
 
 
 ```sh
