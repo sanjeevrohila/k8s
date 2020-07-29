@@ -325,4 +325,6 @@ map[hardware:hyperthreaded]
  
  
 ## Check log with fifferent verbosity 
+```sh
 kubectl logs node-label-pod -n jul29 -v=10/9/8
+```
