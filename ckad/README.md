@@ -82,3 +82,73 @@ $ kubectl run mybusybox --image=ubuntu --restart=Never --rm -it -- /bin/sh -c "e
 Hello Kubernetes
 pod "mybusybox" deleted
 ```
+
+
+
+
+### Pod Design
+
+
+Create pod with label 'frontend'
+```sh
+$ kubectl run test-label1 --image=nginx --labels=application=frontend,tier=production -n jul29 --restart=Never --dry-run -o yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    application: frontend
+    tier: production
+  name: test-label1
+spec:
+  containers:
+  - image: nginx
+    name: test-label1
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+```
+
+Create another with another label
+```sh
+$ kubectl run test-label2 --image=nginx --labels=application=backend,tier=production -n jul29 --restart=Never --dry-run -o yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    application: backend
+    tier: production
+  name: test-label2
+spec:
+  containers:
+  - image: nginx
+    name: test-label2
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+```
+
+```sh
+$ kubectl get pods -n jul29 -l application=backend
+NAME          READY   STATUS    RESTARTS   AGE
+test-label2   1/1     Running   0          23s
+$ kubectl get pods -n jul29 -l application=frontend
+NAME          READY   STATUS    RESTARTS   AGE
+test-label1   1/1     Running   0          6m30s
+$ kubectl get pods -n jul29 -l tier=production
+NAME          READY   STATUS    RESTARTS   AGE
+test-label1   1/1     Running   0          7m2s
+test-label2   1/1     Running   0          62s
+$ kubectl get pods -n jul29 -l "application in (frontend)"
+NAME          READY   STATUS    RESTARTS   AGE
+test-label1   1/1     Running   0          30m
+$ kubectl get pods -n jul29 -l "tier in (production)"
+NAME          READY   STATUS    RESTARTS   AGE
+test-label1   1/1     Running   0          30m
+test-label2   1/1     Running   0          24m
+$ kubectl get pods -n jul29 -l "application in (backend)"
+NAME          READY   STATUS    RESTARTS   AGE
+test-label2   1/1     Running   0          24m
