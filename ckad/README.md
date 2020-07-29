@@ -310,3 +310,8 @@ ubuntu1604   Ready    master   71d   v1.18.2   beta.kubernetes.io/arch=amd64,bet
 # Label removed from node but the pod still remains on the same node
 $ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeName}{"\n"}'
 host-2
+
+
+# The label indo still exists on pod
+$ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeSelector}{"\n"}'
+map[hardware:hyperthreaded]
