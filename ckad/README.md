@@ -243,7 +243,7 @@ host-1
 
 
 
-### Node Labeling
+## Node Labeling
 
 ```sh
 # Labeling host-2 as its hardware is hyperthreading enabled
@@ -259,7 +259,7 @@ ubuntu1604   Ready    master   71d   v1.18.2   beta.kubernetes.io/arch=amd64,bet
 ``` 
 
 
-### Create a pod with node selector with label
+## Create a pod with node selector label
 ```sh
 #Create basic pod
 $ kubectl run node-label-pod --image=nginx --restart=Never --dry-run -o yaml -n jul29
