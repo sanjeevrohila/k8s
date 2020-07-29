@@ -4,6 +4,8 @@ $ for ele in `kubectl get po -o jsonpath='{.items[*].spec.containers[*].image}'`
 ```
 
 
+
+
 ### Multi container Pod
 
  - Create Multi container pod
