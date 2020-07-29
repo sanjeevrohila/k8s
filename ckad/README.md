@@ -328,3 +328,22 @@ map[hardware:hyperthreaded]
 ```sh
 kubectl logs node-label-pod -n jul29 -v=10/9/8
 ```
+
+Create and delete Annotations 
+```sh
+#Adding annotation
+$ kubectl annotate pod nginx{1..3} description="created to explore annotate feature" -n jul29
+pod/nginx1 annotated
+pod/nginx2 annotated
+pod/nginx3 annotated
+
+#Checking annotation
+$ kubectl describe  pod nginx1 -n jul29 | grep -i annotation
+Annotations:  description: created to explore annotate feature
+
+#Deleting annotation
+$ kubectl annotate pod nginx{1..3} description- -n jul29
+pod/nginx1 annotated
+pod/nginx2 annotated
+pod/nginx3 annotated
+```
