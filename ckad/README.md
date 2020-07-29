@@ -14,7 +14,7 @@ $ for ele in `kubectl get po -o jsonpath='{.items[*].spec.containers[*].image}'`
  - Record and check rollout history
  - Rollback
 
-Create multi container pod
+
 ```sh
 $ vim multi-container-pod.yaml
 apiVersion: v1
@@ -36,6 +36,9 @@ spec:
     image: ubuntu
     name: proxy
   restartPolicy: Never
+  ```
+  ```sh
+  kubectl apply -f multi-container-pod.yaml
   ```
 
 
