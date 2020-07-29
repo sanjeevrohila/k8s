@@ -317,6 +317,8 @@ $ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeSelector}{"\n"
 map[hardware:hyperthreaded]
 ```
 
-#what if we label another host with same label, will this pid restart there ?
-#but the --restart=Never so it will not, if not --restart=Always
-#Need to figure out what will happen
+
+# Pod labeling quiz, what happens below
+ - what if we label another host with same label, will this pid restart there ?
+ - but the --restart=Never so it will not, if not --restart=Always
+ - Need to figure out what will happen
