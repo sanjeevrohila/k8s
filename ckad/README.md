@@ -206,5 +206,37 @@ nginx1        1/1     Running   0          2m48s   perf=black
 ```sh
 kubectl taint node <node name> key=value:<taint_effect>
 ```
+
+Taint a Node
+```sh
+$ kubectl taint node host-1 application=mebuy:NoSchedule
+
+# Check the taint on node
+$ kubectl describe node host-1 | grep Taint
+Taints:             application=mebuy:NoSchedule
+
+#Schedule a pod
+$ cat taint-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: taint-pod
+  name: taint-pod
+spec:
+  containers:
+  - image: nginx
+    name: taint-pod-container
+  tolerations:
+  - key: "application"
+    operator: "Equal"
+    value: "mebuy"
+    effect: "NoSchedule"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  
+$ kubectl get po taint-pod -n jul29 -o jsonpath='{.spec.nodeName}{"\n"}'
+host-1
+```
  
 
