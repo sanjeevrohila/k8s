@@ -152,3 +152,22 @@ test-label2   1/1     Running   0          24m
 $ kubectl get pods -n jul29 -l "application in (backend)"
 NAME          READY   STATUS    RESTARTS   AGE
 test-label2   1/1     Running   0          24m
+
+
+
+Show all pod with labels
+```sh
+$ kubectl get po -n jul29 --show-labels
+NAME          READY   STATUS    RESTARTS   AGE   LABELS
+test-label1   1/1     Running   0          44m   application=frontend,tier=production
+test-label2   1/1     Running   0          38m   application=backend,tier=production
+test-label3   1/1     Running   0          7s    application=frontend,tier=development
+```
+
+Show all pods with labels with selected labels
+```sh
+$ kubectl get pods -n jul29 --show-labels -l "application in (backend, frontend)"
+NAME          READY   STATUS    RESTARTS   AGE   LABELS
+test-label1   1/1     Running   0          41m   application=frontend,tier=production
+test-label2   1/1     Running   0          35m   application=backend,tier=production
+```
