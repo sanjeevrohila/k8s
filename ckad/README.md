@@ -258,3 +258,40 @@ host-2       Ready    <none>   71d   v1.18.2   beta.kubernetes.io/arch=amd64,bet
 ubuntu1604   Ready    master   71d   v1.18.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=ubuntu1604,kubernetes.io/os=linux,node-role.kubernetes.io/master=
 ``` 
 
+
+### Create a pod with node selector with label
+```sh
+#Create basic pod
+$ kubectl run node-label-pod --image=nginx --restart=Never --dry-run -o yaml -n jul29
+
+#Add aditional field to select Node
+#Edit as node label pod
+$vim node-label-pod.yaml
+$ cat node-label-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: node-label-pod
+  name: node-label-pod
+spec:
+  containers:
+  - image: nginx
+    name: node-label-pod
+    resources: {}
+  nodeSelector:
+    hardware:  hyperthreaded #label to select
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+
+#Create pod
+$ kubectl apply -f node-label-pod.yaml -n jul29
+pod/node-label-pod created
+
+#check pod affinity
+$ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeName}{"\n"}'
+host-2
+$ kubectl get pod node-label-pod -n jul29 -o jsonpath='{.spec.nodeSelector}{"\n"}'
+map[hardware:hyperthreaded]
