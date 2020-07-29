@@ -347,3 +347,44 @@ pod/nginx1 annotated
 pod/nginx2 annotated
 pod/nginx3 annotated
 ```
+
+
+
+## Creating deployments
+
+```sh
+$ kubectl run test-deployment --image=nginx --replicas=3 --restart=Always --labels=app=frontend,env=prod  --env=appPath=/opt/deploymentApp --port=80  --dry-run -o yaml
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend
+    env: prod
+  name: test-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+      env: prod
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend
+        env: prod
+    spec:
+      containers:
+      - env:
+        - name: appPath
+          value: /opt/deploymentApp
+        image: nginx
+        name: test-deployment
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+```
