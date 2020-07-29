@@ -74,3 +74,11 @@ Commercial support is available at
 </body>
 </html>
 ```
+
+
+Create a Pod run a command and delete the pod
+```sh
+$ kubectl run mybusybox --image=ubuntu --restart=Never --rm -it -- /bin/sh -c "echo Hello Kubernetes"
+hello K8s
+pod "mybusybox" deleted
+```
