@@ -193,3 +193,18 @@ $ kubectl get po --show-labels -n jul29
 NAME          READY   STATUS    RESTARTS   AGE     LABELS
 nginx1        1/1     Running   0          2m48s   perf=black
 ```
+
+
+### Taints and Tolerations
+
+| Taint Effect | Specification | additional Info|
+| ------------ | ------------- | ---------------|
+| NoSchedule | No pod scheduling allowed without tolrence | No impact on existing pods |
+| PreferNoSchedule | Tries not to allow pod scheduling | No impact on existing pods |
+| NOExecute | No pod scheduling allowed without tolrence | Evicts existing pods |
+
+```sh
+kubectl taint node <node name> key=value:<taint_effect>
+```
+ 
+
