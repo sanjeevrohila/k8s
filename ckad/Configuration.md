@@ -59,3 +59,6 @@ spec:
   restartPolicy: Never
 status: {}
 ```
+
+
+# Pass config map to a pod container to se the env Variable
