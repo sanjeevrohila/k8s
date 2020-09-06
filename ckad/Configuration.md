@@ -1,5 +1,6 @@
 
-###Create configuration (Imperative way)
+### Create configuration (Imperative way)
+
 ```
 $ kubectl create configmap myconfig --from-literal=key1=val1 --from-literal=key2=val2 --dry-run -o yaml
 apiVersion: v1
