@@ -13,6 +13,26 @@ metadata:
   name: myconfig
 ```
 
+### Check config Map
+```
+$ kubectl describe configmap myconfig
+Name:         myconfig
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+key1:
+----
+val1
+key2:
+----
+val2
+Events:  <none>
+```
+
+
 ### Create pod with environmant Variables
 ```
 $ kubectl run mypod --image=nginx --port=80 --restart=Never --env={key1=val1,key2=val2} --dry-run -o yaml
