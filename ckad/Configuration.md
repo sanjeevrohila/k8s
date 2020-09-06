@@ -66,8 +66,9 @@ status: {}
 ```
 
 
-# Pass config map to a pod container to se the env Variable
+# Pod with environment variable using config map
 
+### Create
 ```
 $ cat pod-from-config.yaml 
 apiVersion: v1
@@ -90,4 +91,19 @@ spec:
   dnsPolicy: ClusterFirst
   restartPolicy: Never
 status: {}
+```
+
+# Check
+
+```
+$ kubectl exec -it mypod -c mypod -- /bin/bash
+root@mypod:/# 
+root@mypod:/# 
+root@mypod:/# echo #key1
+
+root@mypod:/# echo $key1
+val1
+root@mypod:/# echo $key2
+val2
+root@mypod:/# 
 ```
